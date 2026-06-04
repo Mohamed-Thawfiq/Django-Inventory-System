@@ -38,7 +38,7 @@ def orders_add(request):
         bill_amount=amount + gst_amount
         new_order=orders(customer_ref_id=request.POST['customer_ref'],product_ref_id=request.POST['product_ref'],order_num=request.POST['order_num'],order_date=request.POST['order_date'],quantity=request.POST['quantity'],amount=amount,gst_amount=gst_amount,bill_amount=bill_amount)
         new_order.save()
-        return redirect('all/customers/')
+        return redirect('/orders/view_orders/')
         
 
     return render(request,'orders_form.html',context)
