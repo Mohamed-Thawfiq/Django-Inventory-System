@@ -6,6 +6,7 @@ class product(models.Model):
     product_description=models.CharField(max_length=1000,null=True)
     price=models.FloatField(default=0)
     tax=models.IntegerField(default=0)
+    images=models.ImageField(upload_to='images/',null=True)
     food_type=models.BooleanField(default=False)
 
     def __str__(self):

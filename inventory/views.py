@@ -55,7 +55,7 @@ class productpage(View):
         return render(request,'product_form.html',context)
 
      def post(self,request):
-        form = product_forms(request.POST)
+        form = product_forms(request.POST,request.FILES)
         if request.method == 'POST' and form.is_valid():
             form.save()
             return redirect('/inventory/product/view/')

@@ -15,6 +15,7 @@
         <th>Description</th>
         <th>Tax</th>
         <th>Food Type</th>
+        <th>Picture</th>
         <th>Update</th>
         <th>Delete</th>
     </tr>
@@ -28,6 +29,13 @@
             <td>{{i.product_description}}</td>
             <td>{{i.tax}}</td>
             <td>{{ i.food_type|yesno:"Yes,No" }}</td>
+            <td>
+                {% if i.images %}
+                    <img src="{{ i.images.url }}" alt="img" width="100px">
+                {% else %}
+                    No Picture
+                {% endif %}
+            </td>
             <td>
                 <a href="{% url 'product_update' i.id %}"><button>Update</button></a>
             </td>

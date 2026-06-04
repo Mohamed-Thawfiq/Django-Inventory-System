@@ -19,3 +19,4 @@ class order_form(ModelForm):
     class Meta:
         model= orders
         fields= ['customer_ref','product_ref','order_num','order_date','quantity']
+        
