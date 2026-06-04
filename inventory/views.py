@@ -4,7 +4,7 @@ from .forms import *
 from .models import *
 from django.views import View
 from django.shortcuts import render,redirect
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
@@ -46,7 +46,10 @@ from django.shortcuts import render,redirect
 #                 return redirect('/inventory/product/view/')
 #     return render(request,'product_form.html',context)
 
-class productpage(View):
+class productpage(LoginRequiredMixin, View):
+     
+     login_url='/'
+
      def get(self,request):
         context={
             'product_form':product_forms()
@@ -60,21 +63,28 @@ class productpage(View):
             form.save()
             return redirect('/inventory/product/view/')
     
-class productview(View):
-     def get (self,request):
+class productview(LoginRequiredMixin, View):
+
+    login_url='/' 
+
+    def get (self,request):
          context={
          'all_product':product.objects.all()
 
          }
          return render(request,'product.html',context)
 
-class productdelete(View):
+class productdelete(LoginRequiredMixin, View):
+
+    login_url='/'
     def get(self,request,id):
         selected_products=product.objects.get(id = id)
         selected_products.delete()
         return redirect('/inventory/product/view/')
     
-class productupdate(View):
+class productupdate(LoginRequiredMixin, View):
+
+    login_url='/'
     def get(self,request,id):
          selected_products=product.objects.get(id = id)
     

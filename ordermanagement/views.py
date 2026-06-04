@@ -1,23 +1,30 @@
 from django.shortcuts import redirect, render
 from .models import *
 from .forms import *
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required(login_url='/')
 def customer_list(request):
     context={
         'customers': customer.objects.all()
     }
     return render(request,'customer.html',context)
 
+@login_required(login_url='/')
 def customer_add(request):
     form = product_forms(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('/orders/all/customers/')
     return render(request, 'customer_add.html', {'customer_form': form})
+
+@login_required(login_url='/')
 def customer_delete(request,id):
     selected_customer=customer.objects.get(id = id)
     selected_customer.delete()
     return redirect('/orders/all/customers/')
+
+@login_required(login_url='/')
 def customer_update(request,id):
     selected_customer=customer.objects.get(id = id)
     form = product_forms(request.POST or None, instance=selected_customer)
@@ -26,6 +33,7 @@ def customer_update(request,id):
         return redirect('/orders/all/customers/')
     return render(request, 'customer_add.html', {'customer_form': form})
 
+@login_required(login_url='/')
 def orders_add(request):
 
     context={
@@ -43,6 +51,7 @@ def orders_add(request):
 
     return render(request,'orders_form.html',context)
 
+@login_required(login_url='/')
 def all_orders(request):
     context={
         'all_orders':orders.objects.all()
@@ -50,11 +59,13 @@ def all_orders(request):
 
     return render(request,'orders.html',context)
 
+@login_required(login_url='/')
 def delete_orders(request,id):
     order=orders.objects.get(id=id)
     order.delete()
     return redirect('/orders/view_orders/')
 
+@login_required(login_url='/')
 def update_orders(request,id):
     order=orders.objects.get(id=id)
     context={
