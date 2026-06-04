@@ -1,0 +1,14 @@
+{% extends 'base.html'  %}   
+{% block content %} 
+<center>  
+<h1>Product Form</h1>
+</center>  
+    <a href="/inventory/product/view/">
+        <button>Back</button>
+    </a>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ product_form }}
+        <input type="submit" value="Save Product">
+    </form>
+{% endblock %}  

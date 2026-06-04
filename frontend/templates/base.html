@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css%}
+    {% bootstrap_javascript%}
+    <style>
+    table,th,td{
+        border:1px solid black;
+        padding:10px;
+    }
+    </style>
+</head>
+<body>
+{% include 'navbar.html'%}
+
+{% block content %}
+
+{% endblock %}
+
+<footer>
+    <center>
+    <p>copyrights 2023 Inventory System. All rights reserved.</p>
+    </center>
+</footer>
+    
+</body>
+</html>
