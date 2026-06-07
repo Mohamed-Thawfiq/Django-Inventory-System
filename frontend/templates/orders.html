@@ -1,52 +1,49 @@
 {% extends 'base.html' %}
+
+{% block title %}Orders{% endblock %}
+
 {% block content %}
+<div class="page-card">
+    <div class="page-header">
+        <h1>Your Orders</h1>
+        <a href="/orders/add/" class="btn btn-primary">New Order</a>
+    </div>
 
-<center><h1>Your Orders</h1></center>
-<a href="/orders/add/">
-
-    <button>New Orders</button>
-
-</a>
-<table>
-
-    <thead>
-        <tr>
-            <th>Customer Name:</th>
-            <th>Product Name:</th>
-            <th>Order Numer:</th>
-            <th>Date:</th>
-            <th>Product Amount:</th>
-            <th>GST:</th>
-            <th>Toatal Bill:</th>
-            <th>Update</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for order in all_orders %}
-
-        <tr>
-            <td>{{order.customer_ref}}</td>
-            <td>{{order.product_ref}}</td>
-            <td>{{order.order_num}}</td>
-            <td>{{order.order_date}}</td>
-            <td>{{order.amount}}</td>
-            <td>{{order.gst_amount}}</td>
-            <td>{{order.bill_amount}}</td>
-            <td>
-                <a href="{% url 'order_update' order.id %}">
-                    <button>Update</button>
-                </a>
-            </td>
-            <td>
-                <a href="{% url 'order_deleted' order.id %} ">
-                    <button>Delete</button>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-
-</table>
-
+    <div class="table-responsive">
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Product Name</th>
+                    <th>Order Number</th>
+                    <th>Date</th>
+                    <th>Product Amount</th>
+                    <th>GST</th>
+                    <th>Total Bill</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in all_orders %}
+                <tr>
+                    <td>{{ order.customer_ref }}</td>
+                    <td>{{ order.product_ref }}</td>
+                    <td>{{ order.order_num }}</td>
+                    <td>{{ order.order_date }}</td>
+                    <td>{{ order.amount }}</td>
+                    <td>{{ order.gst_amount }}</td>
+                    <td>{{ order.bill_amount }}</td>
+                    <td>
+                        <a href="{% url 'order_update' order.id %}" class="btn btn-sm btn-outline-primary btn-action">Update</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'order_deleted' order.id %}" class="btn btn-sm btn-outline-danger btn-action">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

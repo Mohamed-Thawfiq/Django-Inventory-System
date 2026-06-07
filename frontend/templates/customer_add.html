@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    <center>
+{% block title %}Add Customer{% endblock %}
 
-    <h1>Add Customer</h1>
-    </center>
-    <a href="/orders/all/customers/">
-        <button>Back</button>
-    </a>
-    <form method="post">
+{% block content %}
+<div class="page-card mx-auto" style="max-width:760px;">
+    <div class="page-header">
+        <h1>Add Customer</h1>
+        <a href="/orders/all/customers/" class="btn btn-outline-secondary">Back</a>
+    </div>
+
+    <form method="post" class="form-card">
         {% csrf_token %}
-        {{ customer_form}}
-        <button type="submit">Add Customer</button>
+        {{ customer_form }}
+        <button type="submit" class="btn btn-primary">Add Customer</button>
     </form>
+</div>
 {% endblock %}

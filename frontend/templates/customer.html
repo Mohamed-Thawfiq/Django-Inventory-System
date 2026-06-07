@@ -1,31 +1,36 @@
 {% extends 'base.html' %}
-{% block content %}
-<center>   
-<h1>Customer List</h1>
-</center>
-<a href="/orders/add/customer?">
-    <button>Add Customer</button>
-</a>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Since</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for customer in customers %}
-            <tr>
-                <td>{{ customer.name }}</td>
-                <td>{{ customer.since }}</td>
-                <td><a href="{% url 'customer_update' customer.id %}">Update</a></td>
-                <td><a href="{% url 'customer_delete' customer.id %}">Delete</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 
-    <p class="white-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, fuga pariatur? Debitis, voluptatem! Eos dolorem aspernatur ut id quo molestias perspiciatis, possimus tempore optio, odit, architecto sapiente excepturi reiciendis ea.</p>
+{% block title %}Customers{% endblock %}
+
+{% block content %}
+<div class="page-card">
+    <div class="page-header">
+        <h1>Customer List</h1>
+        <a href="/orders/add/customer?" class="btn btn-primary">Add Customer</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Since</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.since }}</td>
+                    <td><a href="{% url 'customer_update' customer.id %}" class="btn btn-sm btn-outline-primary btn-action">Update</a></td>
+                    <td><a href="{% url 'customer_delete' customer.id %}" class="btn btn-sm btn-outline-danger btn-action">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</div>
 {% endblock %}
